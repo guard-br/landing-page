@@ -44,4 +44,12 @@ $(document).ready(function() {
       scrollTop: $(target).offset().top - navbarHeight - margin
     }, 800);
   });
+
+  const hamburgerMenu = $('.hamburger-menu');
+  const navLinks = $('.nav-links');
+
+  hamburgerMenu.on('click', function() {
+    hamburgerMenu.toggleClass('active');
+    navLinks.toggleClass('active');
+  });
 });
