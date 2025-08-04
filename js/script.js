@@ -7,8 +7,11 @@ $(document).ready(function() {
   $('a[href^="#"]').on('click', function(event) {
     event.preventDefault();
     const target = this.hash;
+    const navbarHeight = $('.navbar').outerHeight();
+    const margin = 20; // Extra margin from the top
+
     $('html, body').animate({
-      scrollTop: $(target).offset().top
+      scrollTop: $(target).offset().top - navbarHeight - margin
     }, 800);
   });
 });
