@@ -211,6 +211,24 @@ section {
   object-fit: cover;
 }
 
+.risk-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  align-items: start;
+  text-align: center;
+}
+
+.risk-columns .column img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.golpe-section {
+  background: linear-gradient(180deg, #f0f0f0, #e0e0e0);
+}
+
 .how-it-works-section {
   background-color: var(--light-color);
 }
