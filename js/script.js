@@ -52,4 +52,19 @@ $(document).ready(function() {
     hamburgerMenu.toggleClass('active');
     navLinks.toggleClass('active');
   });
+
+  $(window).on('scroll', function() {
+    const scrollIndicator = $('.scroll-indicator');
+    if (!scrollIndicator.length) return;
+
+    const scrollTop = $(window).scrollTop();
+    const windowHeight = $(window).height();
+    const docHeight = $(document).height();
+
+    if (scrollTop + windowHeight >= docHeight - 5) {
+      scrollIndicator.fadeOut();
+    } else {
+      scrollIndicator.fadeIn();
+    }
+  });
 });
