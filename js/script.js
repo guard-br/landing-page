@@ -6,12 +6,13 @@ $(document).ready(function() {
   const flipper = $('.card-flipper');
   let isFlipping = false;
   let isFront = true;
+  let autoFlipInterval;
+  let autoFlipCount = 0;
+  const maxAutoFlips = Infinity; // Number of automatic flips
 
-  // Click to flip the card
-  flipper.on('click', function() {
-    if (isFlipping) {
-      return;
-    }
+  // Function to flip the card
+  function flipCard() {
+    if (isFlipping) return;
     isFlipping = true;
 
     if (isFront) {
@@ -19,13 +20,32 @@ $(document).ready(function() {
     } else {
       flipper.css('transform', 'rotateY(0deg)');
     }
-    
     isFront = !isFront;
 
     setTimeout(() => {
       isFlipping = false;
     }, 800); // Match CSS transition duration
+  }
+
+  // Click to flip the card
+  flipper.on('click', function() {
+    flipCard();
+    // Optionally stop auto flipping after user interacts
+    clearInterval(autoFlipInterval);
   });
+
+  // Automatic flipping
+  function startAutoFlip() {
+    autoFlipInterval = setInterval(() => {
+      flipCard();
+      autoFlipCount++;
+      if (autoFlipCount >= maxAutoFlips * 2) { // 2 flips = 1 full cycle
+        clearInterval(autoFlipInterval);
+      }
+    }, 1800); // Wait for flip animation + pause
+  }
+
+  startAutoFlip();
 
   // Smooth scrolling for anchor links
   $('a[href^="#"]').on('click', function(event) {
