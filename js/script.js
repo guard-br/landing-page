@@ -1,5 +1,5 @@
 if (window.location.protocol === "http:") {
-  window.location.href = "https:" + window.location.href.substring(5);
+  window.location.href = "https" + window.location.href.substring(5);
 }
 
 $(document).ready(function() {
@@ -49,8 +49,13 @@ $(document).ready(function() {
 
   // Smooth scrolling for anchor links
   $('a[href^="#"]').on('click', function(event) {
-    event.preventDefault();
     const target = this.hash;
+
+    if (target === '#') {
+      return;
+    }
+
+    event.preventDefault();
     const navbarHeight = $('.navbar').outerHeight();
     const margin = 20; // Extra margin from the top
 
@@ -85,6 +90,20 @@ $(document).ready(function() {
       scrollIndicator.fadeOut();
     } else {
       scrollIndicator.fadeIn();
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  if (!scrollIndicator) return;
+
+  window.addEventListener('scroll', () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 5) {
+      scrollIndicator.style.display = 'none';
+    } else {
+      scrollIndicator.style.display = 'flex';
     }
   });
 });

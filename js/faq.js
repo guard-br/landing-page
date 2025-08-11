@@ -11,7 +11,7 @@ const faqData = [
     "question": "Ele bloqueia o pagamento por aproximação do meu celular?",
     "answer": `
       Não, o GUARD CARD não bloqueia o pagamento por aproximação do seu celular.
-      Ele é projetado para proteger apenas os cartões de crédito e débito físicos.`
+      Ele é projetado para proteger apenas os cartões físicos.`
   },
   {
     "question": "Posso dobrar o meu cartão?",
@@ -26,7 +26,7 @@ const faqData = [
     "answer": `
       Não, o GUARD CARD não tem contra indicações. Ele é seguro para
       uso e apenas interfere no funcionamento dos seus cartões de crédito
-      e débito quando estes estiverem próximos dele.`
+      e débito enquanto estes estiverem próximos dele.`
   },
   {
     "question": "O meu cartão chegou, é só colocar ele na carteira?",
@@ -44,7 +44,6 @@ const faqData = [
       O GUARD CARD é uma camada de proteção adicional contra fraudes de pagamento
       por aproximação, mas não podemos garantir 100% de eficácia em todas as situações.
       Para as maquininhas de pagamento por aproximação mais populares no Brasil,
-      o GUARD CARD possui uma alta eficácia. É importante lembrar que nenhuma tecnologia 
-      é infalível e que os golpes e fraudes estão sempre evoluindo.`
+      o GUARD CARD possui uma alta eficácia.`
   },
 ];
