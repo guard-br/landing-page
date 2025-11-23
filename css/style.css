@@ -114,6 +114,7 @@ p {
   background-position: center;
   background-attachment: fixed;
   z-index: 1;
+  overflow: hidden; /* Prevent content from overlapping */
 }
 
 .hero::before {
@@ -195,6 +196,10 @@ p {
   max-width: 600px;
   margin: 0 auto 30px;
   color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.5); /* Add background */
+  padding: 10px 20px; /* Add padding */
+  border-radius: 5px; /* Add border-radius */
+  display: inline-block; /* Make background wrap text */
 }
 
 main {
@@ -469,6 +474,17 @@ span.trade-mark {
   .risk-columns .column {
     color: var(--dark-color); /* Reset color for readability on mobile */
     min-height: 250px; /* Adjust height for mobile */
+    background-image: none; /* Remove background image on mobile */
+    clip-path: none; /* Remove clip-path on mobile */
+    padding: 40px 20px; /* Adjust padding for mobile */
+  }
+
+  .mobile-risk-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
   }
 }
 
@@ -659,6 +675,11 @@ span.trade-mark {
 
   .risk-columns .column:hover {
     flex: 1.5;
+  }
+
+  /* Hide mobile images on desktop */
+  .mobile-risk-image {
+    display: none;
   }
 }
 
