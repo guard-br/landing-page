@@ -61,7 +61,6 @@ h1 small {
   display: block;
 }
 
-
 h2 {
   font-size: clamp(2rem, 5vw, 2.5rem);
   text-align: center;
@@ -102,10 +101,30 @@ p {
   text-decoration: none;
 }
 
-
 .hero {
-  background-color: var(--dark-color);
+  position: relative;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   color: var(--white-color);
+  background-image: url("../images/grid_of_cards.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 1;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
 
 .navbar {
@@ -116,7 +135,7 @@ p {
   width: 100%;
   background-color: var(--secondary-dark-color);
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .container {
@@ -168,8 +187,7 @@ p {
 }
 
 .hero-content {
-  text-align: center;
-  padding: 80px 0 30px 0;
+  padding: 0 20px;
 }
 
 .hero-content .subtitle {
@@ -177,6 +195,9 @@ p {
   max-width: 600px;
   margin: 0 auto 30px;
   color: rgba(255, 255, 255, 0.8);
+}
+
+main {
 }
 
 /* --- Seções --- */
@@ -239,7 +260,7 @@ section {
   align-items: center;
   justify-content: center;
   perspective: 1000px;
-  min-height: 400px; 
+  min-height: 400px;
 }
 
 .card-flipper {
@@ -374,7 +395,6 @@ span.trade-mark {
 
   .hamburger-menu {
     display: block;
-    cursor: pointer;
   }
 
   .hamburger-menu .bar {
@@ -398,7 +418,7 @@ span.trade-mark {
   }
 
   .hero-content {
-    padding: 60px 0;
+    padding: 0 20px;
   }
 
   .alternating-columns {
@@ -451,7 +471,11 @@ span.trade-mark {
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
   40% {
@@ -492,7 +516,7 @@ span.trade-mark {
 }
 
 .accordion-question::after {
-  content: '+';
+  content: "+";
   font-size: 1.5rem;
   transition: transform 0.3s ease;
 }
@@ -531,7 +555,7 @@ span.trade-mark {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -557,3 +581,4 @@ span.trade-mark {
   text-decoration: none;
   cursor: pointer;
 }
+
