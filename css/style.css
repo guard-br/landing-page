@@ -222,6 +222,10 @@ section {
   border-radius: 10px;
 }
 
+.parallax-container {
+  overflow: hidden;
+}
+
 .risk-columns {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -445,6 +449,11 @@ span.trade-mark {
   .risk-columns {
     grid-template-columns: 1fr;
   }
+
+  .risk-columns .column {
+    color: var(--dark-color); /* Reset color for readability on mobile */
+    min-height: 250px; /* Adjust height for mobile */
+  }
 }
 
 .scroll-indicator {
@@ -580,5 +589,60 @@ span.trade-mark {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media (min-width: 769px) {
+  .risk-columns {
+    display: flex;
+    margin-top: 50px;
+  }
+
+  .risk-columns .column {
+    position: relative;
+    padding: 100px 40px;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    flex: 1;
+    transition: flex 0.3s ease-in-out;
+    overflow: hidden;
+    min-height: 400px; /* Added for better image filling */
+  }
+
+  .risk-columns .column:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .risk-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .risk-one {
+    background-image: url("../images/public-transport.png");
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+  }
+
+  .risk-two {
+    background-image: url("../images/crowded-event.png");
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+  }
+
+  .risk-three {
+    background-image: url("../images/crowded-place.png");
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .risk-columns .column:hover {
+    flex: 1.5;
+  }
 }
 
