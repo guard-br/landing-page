@@ -1,19 +1,22 @@
 document.addEventListener("scroll", function () {
   const heroContent = document.querySelector(".hero-content");
   const scrollPosition = window.pageYOffset;
+  const isMobile = window.innerWidth <= 768;
 
-  heroContent.style.transform = "translateY(" + scrollPosition * 0.5 + "px)";
+  // Parallax for hero content
+  heroContent.style.transform = "translateY(" + scrollPosition * 0.3 + "px)";
 
-  const parallaxElements = document.querySelectorAll(".parallax");
+  // Parallax for CTA on mobile
+  if (isMobile) {
+    const ctaSection = document.querySelector(".cta-section");
+    if (ctaSection) {
+        const elementTop = ctaSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
 
-  for (const element of parallaxElements) {
-    const elementTop = element.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-
-    if (elementTop < windowHeight) {
-      const elementOffsetTop = element.offsetTop;
-      const yPos = (scrollPosition - elementOffsetTop) * 0.1;
-      element.style.transform = "translateY(" + yPos + "px)";
+        if (elementTop < windowHeight && elementTop > -ctaSection.offsetHeight) {
+            const yPos = -((scrollPosition - ctaSection.offsetTop) * 0.1);
+            ctaSection.style.backgroundPositionY = yPos + "px";
+        }
     }
   }
 });
