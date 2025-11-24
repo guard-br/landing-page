@@ -486,6 +486,17 @@ span.trade-mark {
     border-radius: 10px;
     margin-bottom: 15px;
   }
+
+  .hero {
+    background-color: var(--dark-color);
+    height: 100vh;
+  }
+
+  .hero,
+  .cta-section {
+    background-image: none;
+    background-attachment: scroll;
+  }
 }
 
 .scroll-indicator {
@@ -682,10 +693,3 @@ span.trade-mark {
     display: none;
   }
 }
-
-@media (max-width: 768px) {
-  .hero {
-    height: 100vh;
-  }
-}
-
