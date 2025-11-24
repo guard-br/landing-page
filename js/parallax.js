@@ -15,7 +15,8 @@ document.addEventListener("scroll", function () {
     if (elementTop < windowHeight && elementTop > -ctaSection.offsetHeight) {
       // Parallax for cta content
       if (ctaContent) {
-        const yPos = (scrollPosition - ctaSection.offsetTop) * 0.3;
+        const offsetFromCenter = (windowHeight / 2) - (elementTop + ctaSection.offsetHeight / 2);
+        const yPos = offsetFromCenter * 0.3;
         ctaContent.style.transform = "translateY(" + yPos + "px)";
       }
 
