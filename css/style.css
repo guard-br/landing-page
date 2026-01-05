@@ -166,6 +166,109 @@ ul {
   max-width: 400px;
 }
 
+/* --- Projection Demo Section --- */
+.projection-section {
+  padding: 60px 0;
+  background-color: #f0f0f0;
+  text-align: center;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.projection-section:active {
+    cursor: grabbing;
+}
+
+.demo-description {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.scene-container {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  margin-bottom: 20px;
+}
+
+.scene {
+  width: 200px;
+  height: 130px;
+  position: relative;
+  transform-style: preserve-3d;
+  /* transform: rotateY(45deg); Initial rotation - handled by JS */
+}
+
+/* Generic Card Styles */
+.card-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-family: "Baron Neue", sans-serif;
+}
+
+/* GUARD CARD (Middle) */
+.guard-card {
+  background: linear-gradient(135deg, #1c1c1c, #333);
+  color: #fff;
+  z-index: 10;
+  border: 1px solid #444;
+  font-size: 1.5rem;
+}
+
+/* Projection Fields */
+.projection-field {
+  background: rgba(0, 123, 255, 0.15); /* Light Blue transparent */
+  border: 1px dashed var(--primary-color);
+  color: var(--primary-color);
+  font-size: 0.8rem;
+  z-index: 5;
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.2);
+  animation: pulse-field 3s infinite ease-in-out;
+}
+
+.field-front {
+  transform: translateZ(50px); /* 2.5cm scaled visually */
+}
+
+.field-back {
+  transform: translateZ(-50px); /* 2.5cm scaled visually */
+}
+
+/* Connection Lines (Optional visualization of the gap) */
+.connector {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 50px; /* Distance */
+    background: rgba(0,0,0,0.1);
+    transform-origin: top center;
+}
+
+@keyframes pulse-field {
+    0% { background: rgba(0, 123, 255, 0.1); box-shadow: 0 0 10px rgba(0, 123, 255, 0.1); }
+    50% { background: rgba(0, 123, 255, 0.25); box-shadow: 0 0 25px rgba(0, 123, 255, 0.4); }
+    100% { background: rgba(0, 123, 255, 0.1); box-shadow: 0 0 10px rgba(0, 123, 255, 0.1); }
+}
+
+.caption {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 10px;
+}
+
 /* --- Footer --- */
 footer {
   padding: 30px 0;
