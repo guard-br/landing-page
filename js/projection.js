@@ -23,51 +23,82 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Interaction for manual rotation
     const container = document.querySelector('.projection-section');
-    if (!container) return;
+    if (container) {
+        container.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX;
+            autoRotate = false;
+            container.style.cursor = 'grabbing';
+        });
 
-    container.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startX = e.pageX;
-        autoRotate = false;
-        container.style.cursor = 'grabbing';
-    });
+        container.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX;
+            autoRotate = false;
+        }, {passive: true});
 
-    container.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        startX = e.touches[0].pageX;
-        autoRotate = false;
-    }, {passive: true});
-
-    window.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        const x = e.pageX;
-        const diff = x - startX;
-        currentRotation += diff * 0.5; // Sensitivity
-        if (scene) {
-          scene.style.transform = `rotateY(${currentRotation}deg)`;
-        }
-        startX = x;
-    });
-
-    window.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        const x = e.touches[0].pageX;
-        const diff = x - startX;
-        currentRotation += diff * 0.5; 
-        if (scene) {
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const x = e.pageX;
+            const diff = x - startX;
+            currentRotation += diff * 0.5; // Sensitivity
+            if (scene) {
             scene.style.transform = `rotateY(${currentRotation}deg)`;
-        }
-        startX = x;
-    }, {passive: true});
+            }
+            startX = x;
+        });
 
-    window.addEventListener('mouseup', () => {
-        isDragging = false;
-        container.style.cursor = 'grab';
-        // Optional: Resume auto-rotation after release, or stay still. 
-        // Let's stay still to allow user to inspect.
-    });
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX;
+            const diff = x - startX;
+            currentRotation += diff * 0.5; 
+            if (scene) {
+                scene.style.transform = `rotateY(${currentRotation}deg)`;
+            }
+            startX = x;
+        }, {passive: true});
 
-    window.addEventListener('touchend', () => {
-        isDragging = false;
-    });
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+            container.style.cursor = 'grab';
+        });
+
+        window.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+    }
+
+    // --- State Toggling Logic ---
+    const btnCorrect = document.getElementById('btn-correct');
+    const btnIncorrect = document.getElementById('btn-incorrect');
+    const statusText = document.getElementById('status-text');
+    const sceneElement = document.querySelector('.scene');
+
+    function setCorrectState() {
+        sceneElement.classList.remove('state-incorrect');
+        sceneElement.classList.add('state-correct');
+        
+        btnCorrect.classList.add('active');
+        btnIncorrect.classList.remove('active');
+        
+        statusText.textContent = "Status: PROTEGIDO";
+        statusText.className = "status-text correct";
+    }
+
+    function setIncorrectState() {
+        sceneElement.classList.remove('state-correct');
+        sceneElement.classList.add('state-incorrect');
+        
+        btnIncorrect.classList.add('active');
+        btnCorrect.classList.remove('active');
+        
+        statusText.textContent = "Status: VULNERÁVEL (Uso Indevido)";
+        statusText.className = "status-text incorrect";
+    }
+
+    if (btnCorrect && btnIncorrect) {
+        btnCorrect.addEventListener('click', setCorrectState);
+        btnIncorrect.addEventListener('click', setIncorrectState);
+    }
 });
