@@ -158,6 +158,11 @@ ul {
   border-top: 1px solid #ddd;
 }
 
+.terms-section p, 
+.terms-section li {
+  text-align: justify;
+}
+
 .terms-cta {
   margin-top: 50px;
   display: flex;
